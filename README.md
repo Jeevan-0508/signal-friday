@@ -4,7 +4,7 @@ Local-only LinkedIn content intelligence demo. This is intentionally separate fr
 
 ## Run locally
 
-From the repository root, with Python installed:
+From the repository root, with Node.js installed:
 
 ```bash
 npm run dev
