@@ -144,7 +144,21 @@ const studioPosts = {
   }
 };
 
+const researchSignals = [
+  { pillar:"EU AI ACT", freshness:"LIVE DATE", title:"Transparency is now an operating control", claim:"Article 50 transparency obligations apply from 2 August 2026. The Commission guidance covers direct AI interaction, deepfakes and certain AI-generated public-interest content.", idea:"Visual idea: a bold date card that turns into a control checklist: inform, label, retain evidence.", source:"European Commission · Article 50 guidelines", url:"https://digital-strategy.ec.europa.eu/en/library/guidelines-transparency-obligations-providers-and-deployers-ai-systems", post:"evidence" },
+  { pillar:"REGULATION", freshness:"TIMELINE", title:"High-risk AI has a date on the calendar", claim:"The Commission’s current framework lists the high-risk rules for certain Annex III use cases from 2 December 2027, with separate timing for AI embedded in regulated products.", idea:"Visual idea: a clean two-date timeline with the control work that must happen before the deadline.", source:"European Commission · AI Act framework", url:"https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai", post:"evidence" },
+  { pillar:"AI RISK", freshness:"NIST", title:"The framework is voluntary. The risk is not.", claim:"NIST describes AI RMF as voluntary and intended to improve how organisations incorporate trustworthiness into design, development, use and evaluation. Its GenAI Profile adds technology-specific risks and actions.", idea:"Visual idea: four connected stations labelled Govern, Map, Measure and Manage, with one real workflow underneath.", source:"NIST · AI Risk Management Framework", url:"https://www.nist.gov/itl/ai-risk-management-framework", post:"contrast" },
+  { pillar:"MANAGEMENT SYSTEM", freshness:"ISO 42001", title:"AI governance is a system, not a policy folder", claim:"ISO/IEC 42001:2023 specifies requirements for establishing, implementing, maintaining and continually improving an AI management system.", idea:"Visual idea: a Plan → Do → Check → Act loop wrapped around owners, evidence and exceptions.", source:"ISO/IEC 42001:2023", url:"https://www.iso.org/standard/42001?browse=ics", post:"project" },
+  { pillar:"CYBER RISK", freshness:"ENISA", title:"AI security needs layered controls", claim:"ENISA’s AI cybersecurity practices frame security management through risk analysis, risk estimation, treatment and countermeasures.", idea:"Visual idea: a layered iceberg or defence stack, but label every layer with a control rather than a slogan.", source:"ENISA · Good cybersecurity practices for AI", url:"https://www.enisa.europa.eu/sites/default/files/publications/Multilayer%20Framework%20for%20Good%20Cybersecurity%20Practices%20for%20AI.pdf", post:"playbook" },
+  { pillar:"RESPONSIBLE AI", freshness:"PUBLIC TRUST", title:"The label is only the visible part of transparency", claim:"The Commission links transparency requirements to risks including misinformation, manipulation, fraud, impersonation and consumer deception.", idea:"Visual idea: show the visible label above the surface and the evidence, owner and escalation path underneath.", source:"European Commission · Navigating the AI Act", url:"https://digital-strategy.ec.europa.eu/en/faqs/navigating-ai-act", post:"contrast" }
+];
+
 let activeStudioPost = "contrast";
+
+function renderResearch() {
+  el("researchGrid").innerHTML = researchSignals.map(signal => "<article class=\"research-card\"><div class=\"research-top\"><span class=\"research-pillar\">" + signal.pillar + "</span><span class=\"research-fresh\">" + signal.freshness + "</span></div><h3>" + signal.title + "</h3><p class=\"research-claim\">" + signal.claim + "</p><div class=\"research-idea\"><b>PICTURE DIRECTION</b>" + signal.idea + "</div><div class=\"research-actions\"><a href=\"" + signal.url + "\" target=\"_blank\" rel=\"noreferrer\">SOURCE ↗</a><button class=\"research-use\" data-research-post=\"" + signal.post + "\">USE THIS ANGLE</button></div></article>").join("");
+  document.querySelectorAll("[data-research-post]").forEach(button => button.addEventListener("click", () => { activeStudioPost = button.dataset.researchPost; renderStudio(); document.querySelector(".studio-grid").scrollIntoView({ behavior:"smooth", block:"start" }); }));
+}
 
 function renderStudioTemplates() {
   el("templateList").innerHTML = Object.entries(studioPosts).map(entry => "<button class=\"template-card " + (entry[0] === activeStudioPost ? "active" : "") + "\" data-template=\"" + entry[0] + "\"><strong>" + entry[1].label + "</strong><span>" + entry[1].name + "</span></button>").join("");
@@ -247,6 +261,7 @@ renderTopics();
 renderStory();
 renderWriting();
 renderStudio();
+renderResearch();
 renderChecks();
 renderMiniCalendar();
 renderCalendar();
