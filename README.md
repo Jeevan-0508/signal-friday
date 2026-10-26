@@ -4,13 +4,15 @@ Local-only LinkedIn content intelligence demo. This is intentionally separate fr
 
 ## Run locally
 
-From the repository root:
+From the repository root, with Python installed:
 
 ```bash
 npm run dev
 ```
 
 Then open the repository root at `http://localhost:5173/`.
+
+The dashboard is a local static workspace. Select a topic, inspect its evidence, switch between hooks/approaches/final post, review the QC checklist, and use **EXPORT PACKAGE** to download a local JSON package. The approval button only marks the package ready for your manual review; it never publishes to LinkedIn.
 
 The dashboard is buildless HTML/CSS/JavaScript. It does not connect to LinkedIn, publish posts, scrape LinkedIn, store credentials, or claim that a scheduler is active. The Export Package button creates a local JSON package only.
 
