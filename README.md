@@ -2,6 +2,8 @@
 
 Local-only LinkedIn content intelligence demo. This is intentionally separate from the Germany Job Search app so the existing Supabase-backed tracker remains unchanged.
 
+**Live demo:** [signal-friday.github.io](https://jeevan-0508.github.io/signal-friday/)
+
 ## Run locally
 
 From the repository root, with Node.js installed:
