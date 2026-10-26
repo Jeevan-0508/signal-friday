@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0f12" />
+    <title>SIGNAL//FRIDAY · LinkedIn Content Intelligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css?direct" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">S</div>
+          <div>
+            <div class="brand-title">SIGNAL<span>//</span>FRIDAY</div>
+            <div class="brand-sub">CONTENT INTELLIGENCE</div>
+          </div>
+        </div>
+        <div class="workspace-label">LOCAL WORKSPACE <span>PRIVATE</span></div>
+        <nav class="nav" aria-label="Main navigation">
+          <button class="nav-item active" data-section="overview"><span class="nav-icon">◈</span> OVERVIEW</button>
+          <button class="nav-item" data-section="queue"><span class="nav-icon">≡</span> RESEARCH QUEUE <b>10</b></button>
+          <button class="nav-item" data-section="writing"><span class="nav-icon">✎</span> WRITING LAB</button>
+          <button class="nav-item" data-section="calendar"><span class="nav-icon">□</span> CALENDAR</button>
+          <button class="nav-item" data-section="sources"><span class="nav-icon">⌁</span> SOURCES & EVIDENCE</button>
+          <button class="nav-item" data-section="history"><span class="nav-icon">↗</span> PERFORMANCE</button>
+        </nav>
+        <div class="sidebar-note">
+          <div class="eyebrow">OPERATING RULE</div>
+          <p>No automatic publishing. Every package stays in draft until human approval.</p>
+          <div class="sidebar-status"><i></i> LOCAL DATA ONLY</div>
+        </div>
+        <div class="sidebar-footer">v0.1 DEMO <span>·</span> 25 OCT 2026</div>
+      </aside>
+      <main class="main">
+        <header class="topbar">
+          <div class="breadcrumb"><span>SIGNAL//FRIDAY</span><em>/</em><strong>WEEK 44 · REVIEW</strong></div>
+          <div class="top-actions">
+            <span class="local-badge"><i></i> NOT CONNECTED TO LINKEDIN</span>
+            <button class="quiet-button" id="exportButton">EXPORT PACKAGE</button>
+            <button class="approval-button" id="approvalButton">REQUEST HUMAN APPROVAL</button>
+          </div>
+        </header>
+        <div class="content">
+          <section class="page-hero" data-view="overview">
+            <div>
+              <div class="eyebrow">RESEARCH-FIRST LINKEDIN INTELLIGENCE · EUROPE/BERLIN</div>
+              <h1>Build a signal worth<br /><span>stopping for.</span></h1>
+              <p class="hero-copy">A weekly editorial system for AI governance, risk, fraud intelligence and the future of work. Evidence first. Human review before anything leaves this workspace.</p>
+            </div>
+            <div class="hero-meta">
+              <div class="date-card"><span>NEXT REVIEW WINDOW</span><strong>FRI 30 OCT · 15:00</strong><small>Europe/Berlin · DST-aware</small></div>
+              <div class="date-card muted"><span>THIS WEEK'S THESIS</span><strong>GOVERNANCE IS AN OPERATING SYSTEM</strong><small>AI Act · controls · evidence</small></div>
+            </div>
+          </section>
+          <section class="metric-grid" data-view="overview">
+            <div class="metric-card"><span>RESEARCHED TOPICS</span><strong>10</strong><small>Across 6 editorial pillars</small></div>
+            <div class="metric-card teal"><span>EVIDENCE-COMPLETE</span><strong>7</strong><small>Primary sources attached</small></div>
+            <div class="metric-card orange"><span>SHORTLISTED</span><strong>3</strong><small>Scored against this week's rubric</small></div>
+            <div class="metric-card purple"><span>POST STATUS</span><strong>DRAFT</strong><small>No publishing or scheduler connected</small></div>
+          </section>
+          <section class="dashboard-grid" data-view="overview">
+            <div class="panel queue-panel" id="queuePanel">
+              <div class="panel-heading"><div><div class="eyebrow">CANDIDATE TOPICS · WEEK 44</div><h2>Research queue</h2></div><button class="filter-chip active" data-filter="ALL">ALL <span>10</span></button></div>
+              <div class="filter-row" id="filterRow"></div>
+              <div class="topic-list" id="topicList"></div>
+            </div>
+            <div class="panel story-panel" id="storyPanel">
+              <div class="panel-heading"><div><div class="eyebrow">SELECTED STORY</div><h2 id="selectedPillar">RISK / BUSINESS</h2></div><span class="status-pill ready">EVIDENCE READY</span></div>
+              <div class="story-body">
+                <div class="story-score"><div><span>EDITORIAL SCORE</span><strong id="selectedScore">91</strong><small>/100</small></div><div class="score-ring"><span id="scoreRingValue">91</span></div></div>
+                <h3 id="selectedTitle"></h3>
+                <p class="story-rationale" id="selectedRationale"></p>
+                <div class="score-breakdown" id="scoreBreakdown"></div>
+                <div class="source-box"><div class="eyebrow">PRIMARY EVIDENCE</div><div id="selectedSources"></div></div>
+              </div>
+            </div>
+          </section>
+          <section class="writing-section" data-view="writing">
+            <div class="section-heading"><div><div class="eyebrow">DRAFTING PIPELINE · HUMAN-READABLE BY DESIGN</div><h2>Writing lab</h2></div><span class="section-note">120–220 words · source-linked · no invented claims</span></div>
+            <div class="writing-grid">
+              <div class="panel draft-panel">
+                <div class="tab-row"><button class="tab active" data-tab="hooks">5 HOOKS</button><button class="tab" data-tab="angles">3 APPROACHES</button><button class="tab" data-tab="post">FINAL POST</button></div>
+                <div id="writingContent"></div>
+              </div>
+              <div class="panel visual-panel">
+                <div class="panel-heading"><div><div class="eyebrow">SIGNATURE VISUAL</div><h2>Evidence, not decoration</h2></div><span class="status-pill real">REAL ASSET</span></div>
+                <div class="visual-wrap"><img src="./ai-governance-control-room-screenshot.png" alt="Actual AI Governance Control Room project screenshot" /><span class="visual-label">AI GOVERNANCE CONTROL ROOM · PUBLIC PROJECT SCREENSHOT</span></div>
+                <div class="visual-copy"><strong id="visualTitle">A control room is a management system, not a dashboard.</strong><p>Use the real project screen as the visual anchor. Add a small source/date footer only when the image contains a statistic.</p></div>
+              </div>
+            </div>
+          </section>
+          <section class="lower-grid" data-view="overview">
+            <div class="panel qc-panel"><div class="panel-heading"><div><div class="eyebrow">PRE-PUBLISH GATE</div><h2>Quality control</h2></div><span class="status-pill ready">6 / 6 PASS</span></div><div class="check-list" id="checkList"></div></div>
+            <div class="panel calendar-panel"><div class="panel-heading"><div><div class="eyebrow">EDITORIAL RHYTHM</div><h2>Week at a glance</h2></div><button class="text-button" data-section-link="calendar">OPEN CALENDAR ↗</button></div><div class="mini-calendar" id="miniCalendar"></div></div>
+          </section>
+          <section class="full-panel" data-view="calendar"><div class="section-heading"><div><div class="eyebrow">MONDAY → FRIDAY · EUROPE/BERLIN</div><h2>Editorial calendar</h2></div><span class="section-note">The Friday package is prepared for review, not auto-published.</span></div><div class="calendar-board" id="calendarBoard"></div></section>
+          <section class="full-panel" data-view="sources"><div class="section-heading"><div><div class="eyebrow">TRACEABILITY LAYER</div><h2>Sources & evidence</h2></div><span class="section-note">Currentness checked 25 Oct 2026</span></div><div class="sources-board" id="sourcesBoard"></div></section>
+          <section class="full-panel" data-view="history"><div class="section-heading"><div><div class="eyebrow">MEASURE WHAT HAPPENED</div><h2>Performance history</h2></div><span class="section-note">No fake analytics. Import actual LinkedIn metrics when available.</span></div><div class="empty-metrics"><div class="empty-icon">↗</div><h3>No metrics imported yet</h3><p>When a post has real data, record impressions, reactions, comments, reposts, saves, profile visits and follower growth with the collection date and denominator. Until then, this panel stays empty.</p><button class="quiet-button" id="metricsInfoButton">WHY THIS MATTERS</button></div></section>
+        </div>
+      </main>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="./app.js"></script>
+  </body>
+</html>
