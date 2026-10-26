@@ -129,12 +129,70 @@ function renderSources() {
   el("sourcesBoard").innerHTML = Object.values(sources).map(source => "<article class=\"source-card\"><span>" + source.date + "</span><h3>" + source.name + "</h3><p>" + source.note + "</p><a href=\"" + source.url + "\" target=\"_blank\" rel=\"noreferrer\">OPEN PRIMARY SOURCE ↗</a></article>").join("");
 }
 
+const studioPosts = {
+  contrast: {
+    label:"CONTRAST CARD", name:"Control room vs dashboard", kicker:"AI GOVERNANCE", title:"A dashboard shows risk.\nA control room moves it.", subline:"Visibility is not accountability.", type:"contrast", footer:"AI GOVERNANCE CONTROL ROOM · PROTOTYPE", detailTitle:"Make governance operational", detailCopy:"Use the real project artifact to explain the loop behind the screen: owner, evidence, exception and escalation.", source:"ISO/IEC 42001 + public portfolio prototype", sourceUrl:sources.iso.url, caption:["A dashboard can show risk. A control room has to move it.","That distinction shaped the AI Governance Control Room prototype I built.","The screen is not the governance system. The operating loop behind it is:","A use case is recorded. A risk is assessed. A control is assigned. Evidence is linked. An exception has an owner and an escalation path.","That is where my risk and program-management experience carries across. A control without an owner becomes a document. An issue without a next action becomes a backlog item.","This is an independent prototype, not a production deployment. Its purpose is to make the operating model visible and reviewable.","What is the first handoff your AI governance program needs to make explicit?","#AIGovernance #AIRisk"].join("\n\n")
+  },
+  playbook: {
+    label:"PLAYBOOK CARD", name:"Amazon risk lessons", kicker:"CAREER LESSONS", title:"5 risk habits\nthat transfer to AI governance", subline:"The technology changed. The discipline still matters.", type:"playbook", footer:"PROFESSIONAL OBSERVATION · NO INVENTED METRICS", detailTitle:"Transfer experience without overclaiming", detailCopy:"This format uses your Amazon risk and program-management background as a professional observation, not as a case study with made-up numbers.", source:"Professional experience · Amazon Risk Management", sourceUrl:"", caption:["The most useful AI governance skills are not all new.","I learned five of them through risk and program work:","1. Challenge the status quo before accepting a process as fixed.","2. Make the owner visible. A control without ownership is only documentation.","3. Turn a signal into a decision, not just a score.","4. Build mechanisms that survive handoffs between teams.","5. Look around corners. Dependencies and exceptions arrive before the dashboard catches up.","AI governance needs technical understanding. It also needs the operating habits that make risk work repeatable.","Which risk habit has transferred best into your AI work?","#RiskManagement #AIGovernance"].join("\n\n")
+  },
+  evidence: {
+    label:"EVIDENCE CARD", name:"AI Act timeline", kicker:"EU AI ACT · SOURCE-LINKED", title:"2 AUG 2026", subline:"AI Act transparency obligations moved into application.", type:"evidence", footer:"EUROPEAN COMMISSION · ARTICLE 50 FAQ", detailTitle:"Lead with the date, then explain the control", detailCopy:"The visual makes one verified date memorable. The caption translates the date into ownership, evidence and escalation.", source:"European Commission · Article 50 transparency FAQ", sourceUrl:sources.transparency.url, caption:["2 August 2026 is not just a date for a compliance calendar.","Under Article 50 of the EU AI Act, certain transparency obligations apply from that date. The European Commission describes requirements such as informing people when they interact with AI and labelling certain AI-generated or manipulated content.","The practical question for risk teams is: can we show who owns the control, what evidence exists and what happens when it fails?","That is where regulation becomes an operating model.","For organisations building an AI inventory in Germany, the next step is turning the legal requirement into a reviewable rhythm.","Which AI transparency control is hardest to assign in your organisation?","#EUAIAct #GRC"].join("\n\n")
+  },
+  project: {
+    label:"PROJECT BREAKDOWN", name:"Real portfolio artifact", kicker:"AI GOVERNANCE CONTROL ROOM", title:"Your dashboard is not\nyour governance system.", subline:"A prototype for owners, evidence and escalation.", type:"project", footer:"PUBLIC PORTFOLIO PROJECT · PROTOTYPE", detailTitle:"Show the work, label the status", detailCopy:"Use the actual screenshot. Keep the distinction clear: this is independent portfolio work, not a production deployment or client claim.", source:"GitHub portfolio · independent prototype", sourceUrl:"https://github.com/jeevan-0508", caption:["A dashboard can make governance look finished before the work has started.","I built the AI Governance Control Room prototype to make the missing handoffs visible.","Who owns the use case? Which risk was assessed? What control was selected? Where is the evidence? What happens when an exception appears?","Those questions are familiar to risk and program teams. The AI context changes the objects, not the need for ownership and follow-through.","This is an independent prototype. It is not a production deployment, and I am not presenting it as one.","The point is simpler: governance becomes easier to review when the operating loop is visible.","What would you need to see before calling an AI control operational?","#ResponsibleAI #GRC"].join("\n\n")
+  }
+};
+
+let activeStudioPost = "contrast";
+
+function renderStudioTemplates() {
+  el("templateList").innerHTML = Object.entries(studioPosts).map(entry => "<button class=\"template-card " + (entry[0] === activeStudioPost ? "active" : "") + "\" data-template=\"" + entry[0] + "\"><strong>" + entry[1].label + "</strong><span>" + entry[1].name + "</span></button>").join("");
+  document.querySelectorAll("[data-template]").forEach(button => button.addEventListener("click", () => { activeStudioPost = button.dataset.template; el("studioTopic").value = activeStudioPost; renderStudio(); }));
+}
+
+function renderStudioPoster(post) {
+  el("studioFormatLabel").textContent = post.label;
+  el("posterKicker").textContent = post.kicker;
+  el("posterHeadline").textContent = post.title;
+  el("posterSubline").textContent = post.subline;
+  el("posterFooter").textContent = post.footer;
+  const content = el("posterContent");
+  if (post.type === "contrast") { content.className = "poster-content"; content.innerHTML = "<div class=\"poster-callouts\"><span><b>01 · SIGNAL</b>A risk is recorded.</span><span><b>02 · OWNERSHIP</b>A control has a named owner.</span><span><b>03 · ACTION</b>An exception has a route.</span></div>"; }
+  if (post.type === "playbook") { content.className = "poster-content"; content.innerHTML = "<div class=\"poster-list\"><div><b>1</b>Challenge the status quo</div><div><b>2</b>Make the owner visible</div><div><b>3</b>Turn signals into decisions</div><div><b>4</b>Build mechanisms</div><div><b>5</b>Look around corners</div></div>"; }
+  if (post.type === "evidence") { content.className = "poster-content"; content.innerHTML = "<div class=\"poster-stat\"><strong>2 AUG</strong><span>2026</span><small>AI ACT TRANSPARENCY OBLIGATIONS</small></div>"; }
+  if (post.type === "project") { content.className = "poster-content image-layout"; content.innerHTML = "<img src=\"./ai-governance-control-room-screenshot.png\" alt=\"AI Governance Control Room prototype screenshot\">"; }
+}
+
+function renderStudio() {
+  const post = studioPosts[activeStudioPost];
+  renderStudioTemplates();
+  el("studioTopic").value = activeStudioPost;
+  el("studioDetails").innerHTML = "<div class=\"detail-label\">EDITORIAL ANGLE</div><div class=\"detail-title\">" + post.detailTitle + "</div><p class=\"detail-copy\">" + post.detailCopy + "</p>" + (post.sourceUrl ? "<a class=\"detail-source\" href=\"" + post.sourceUrl + "\" target=\"_blank\" rel=\"noreferrer\">" + post.source + " ↗</a>" : "<span class=\"detail-source\">" + post.source + "</span>");
+  el("captionPreview").textContent = post.caption;
+  el("captionWordCount").textContent = post.caption.split(/\s+/).filter(Boolean).length + " WORDS · DRAFT";
+  el("captionSources").textContent = post.source;
+  renderStudioPoster(post);
+}
+
+function copyStudioText(text, message) {
+  navigator.clipboard.writeText(text).then(() => showToast(message)).catch(() => showToast("Copy is unavailable in this browser; use Export Package instead."));
+}
+
+function exportStudioPost() {
+  const post = studioPosts[activeStudioPost];
+  const payload = { project:"SIGNAL//FRIDAY", format:post.label, visualTitle:post.title, visualSubline:post.subline, caption:post.caption, source:post.source, sourceUrl:post.sourceUrl || null, asset:post.type === "project" ? "ai-governance-control-room-screenshot.png" : null, humanApprovalRequired:true, autoPublishing:false };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type:"application/json" });
+  const anchor = document.createElement("a"); anchor.href = URL.createObjectURL(blob); anchor.download = "signal-friday-" + activeStudioPost + "-package.json"; anchor.click(); URL.revokeObjectURL(anchor.href); showToast("Visual package exported. Nothing was published.");
+}
+
 function switchSection(section) {
   document.querySelectorAll(".nav-item").forEach(item => item.classList.toggle("active", item.dataset.section === section));
   document.querySelectorAll("[data-view]").forEach(view => {
     view.style.display = (section === "overview" && view.dataset.view === "overview") || view.dataset.view === section ? "" : "none";
   });
   if (section === "queue") el("queuePanel").scrollIntoView({ behavior:"smooth", block:"start" });
+  if (section === "studio") document.querySelector("[data-view=\"studio\"]").scrollIntoView({ behavior:"smooth", block:"start" });
   if (section === "writing") document.querySelector(".writing-section").scrollIntoView({ behavior:"smooth", block:"start" });
   if (section === "calendar") document.querySelector("[data-view=\"calendar\"]").scrollIntoView({ behavior:"smooth", block:"start" });
   if (section === "sources") document.querySelector("[data-view=\"sources\"]").scrollIntoView({ behavior:"smooth", block:"start" });
@@ -178,13 +236,19 @@ el("approvalButton").addEventListener("click", () => {
   showToast(approved ? "Marked ready for your manual review." : "Approval marker cleared.");
 });
 el("metricsInfoButton").addEventListener("click", () => showToast("Metrics stay blank until actual LinkedIn data is imported."));
+el("studioTopic").innerHTML = Object.entries(studioPosts).map(entry => "<option value=\"" + entry[0] + "\">" + entry[1].label + " · " + entry[1].name + "</option>").join("");
+el("studioTopic").addEventListener("change", event => { activeStudioPost = event.target.value; renderStudio(); });
+el("copyCaptionButton").addEventListener("click", () => copyStudioText(studioPosts[activeStudioPost].caption, "Caption copied to clipboard."));
+el("copyVisualButton").addEventListener("click", () => { const post = studioPosts[activeStudioPost]; copyStudioText(post.title + "\n\n" + post.subline + "\n\n" + post.footer, "Visual text copied to clipboard."); });
+el("downloadPostButton").addEventListener("click", exportStudioPost);
 
 renderFilters();
 renderTopics();
 renderStory();
 renderWriting();
+renderStudio();
 renderChecks();
 renderMiniCalendar();
 renderCalendar();
 renderSources();
-switchSection("overview");
+switchSection("studio");

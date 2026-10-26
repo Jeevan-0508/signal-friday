@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css?direct" />
+    <link rel="stylesheet" href="./studio.css?direct" />
   </head>
   <body>
     <div class="app-shell">
@@ -22,7 +23,7 @@
         </div>
         <div class="workspace-label">LOCAL WORKSPACE <span>PRIVATE</span></div>
         <nav class="nav" aria-label="Main navigation">
-          <button class="nav-item active" data-section="overview"><span class="nav-icon">◈</span> OVERVIEW</button>
+          <button class="nav-item active" data-section="studio"><span class="nav-icon">✦</span> POST STUDIO</button>
           <button class="nav-item" data-section="queue"><span class="nav-icon">≡</span> RESEARCH QUEUE <b>10</b></button>
           <button class="nav-item" data-section="writing"><span class="nav-icon">✎</span> WRITING LAB</button>
           <button class="nav-item" data-section="calendar"><span class="nav-icon">□</span> CALENDAR</button>
@@ -31,7 +32,7 @@
         </nav>
         <div class="sidebar-note">
           <div class="eyebrow">OPERATING RULE</div>
-          <p>No automatic publishing. Every package stays in draft until human approval.</p>
+          <p>Visual-first posts from real experience, real projects and source-linked claims. Nothing publishes automatically.</p>
           <div class="sidebar-status"><i></i> LOCAL DATA ONLY</div>
         </div>
         <div class="sidebar-footer">v0.1 DEMO <span>·</span> 25 OCT 2026</div>
@@ -46,6 +47,15 @@
           </div>
         </header>
         <div class="content">
+          <section class="studio-shell" data-view="studio">
+            <div class="studio-intro"><div><div class="eyebrow">VISUAL-FIRST LINKEDIN POSTS · ORIGINAL FORMATS</div><h1>Make the idea<br /><span>impossible to miss.</span></h1><p>Choose a visual format, build the argument, inspect the caption and export a review-ready package. The graphics stay short. The evidence stays visible.</p></div><div class="studio-note"><span>DESIGN RULE</span><strong>One idea. One visual. One honest claim.</strong><small>Use a real screenshot, a verified source or a clearly labelled professional observation.</small></div></div>
+            <div class="studio-grid">
+              <div class="studio-library panel"><div class="panel-heading"><div><div class="eyebrow">FORMAT LIBRARY</div><h2>Pick the shape</h2></div><span class="status-pill real">ORIGINAL</span></div><div class="template-list" id="templateList"></div><div class="studio-warning"><strong>Do not copy the examples.</strong><span>Borrow the visual logic: contrast, compression, tension and a clear takeaway. Claims and artwork stay original.</span></div></div>
+              <div class="studio-canvas panel"><div class="panel-heading"><div><div class="eyebrow">LIVE VISUAL</div><h2 id="studioFormatLabel">CONTRAST CARD</h2></div><span class="status-pill ready">REVIEW DRAFT</span></div><div class="poster-wrap"><article class="poster" id="poster"><div class="poster-topline" id="posterKicker"></div><h2 id="posterHeadline"></h2><p id="posterSubline"></p><div class="poster-content" id="posterContent"></div><div class="poster-footer"><span id="posterFooter"></span><strong>JEEVAN // RISK × AI</strong></div></article></div><div class="poster-controls"><button class="quiet-button" id="copyVisualButton">COPY VISUAL TEXT</button><span id="posterModeNote">Single-image concept · 4:5 mobile layout</span></div></div>
+              <div class="studio-controls panel"><div class="panel-heading"><div><div class="eyebrow">EDITORIAL CONTROL</div><h2>Make it yours</h2></div><span class="status-pill ready">NO PUBLISH</span></div><div class="control-body"><label>Topic<select id="studioTopic"></select></label><div id="studioDetails"></div><button class="approval-button" id="copyCaptionButton">COPY CAPTION</button><button class="quiet-button full-button" id="downloadPostButton">EXPORT VISUAL PACKAGE</button></div></div>
+            </div>
+            <div class="studio-bottom-grid"><div class="panel caption-panel"><div class="panel-heading"><div><div class="eyebrow">LINKEDIN CAPTION</div><h2>Readable after the image</h2></div><span id="captionWordCount" class="section-note"></span></div><div class="caption-body"><pre id="captionPreview"></pre><div class="caption-footer"><span id="captionSources"></span><span>HUMANIZER PASS · MANUAL REVIEW</span></div></div></div><div class="panel checklist-panel"><div class="panel-heading"><div><div class="eyebrow">POST GATE</div><h2>Before export</h2></div></div><div class="studio-checks"><span>✓ Visual claim is clear in 2 seconds</span><span>✓ Project status is labelled accurately</span><span>✓ Sources sit with factual claims</span><span>✓ Caption has a real point of view</span><span>✓ No engagement bait or invented metrics</span></div></div></div>
+          </section>
           <section class="page-hero" data-view="overview">
             <div>
               <div class="eyebrow">RESEARCH-FIRST LINKEDIN INTELLIGENCE · EUROPE/BERLIN</div>
